@@ -11,16 +11,33 @@ def clear_screen():
 
 def get_supportxmr_stats():
     try:
+        # Get overall stats
         url = f"https://supportxmr.com/api/miner/{WALLET}/stats"
         response = requests.get(url, timeout=10)
         if response.status_code == 200:
             data = response.json()
+
+            # Get worker stats for accurate hashrate
+            workers_count = 0
+            total_worker_hashrate = 0
+            try:
+                workers_url = f"https://supportxmr.com/api/miner/{WALLET}/identifiers"
+                workers_response = requests.get(workers_url, timeout=10)
+                if workers_response.status_code == 200:
+                    workers_data = workers_response.json()
+                    if isinstance(workers_data, list):
+                        workers_count = len(workers_data)
+                        for worker in workers_data:
+                            total_worker_hashrate += worker.get("hash", 0) / 1000
+            except:
+                pass
+
             return {
                 "pool": "SupportXMR",
-                "hashrate": data.get("hash", 0) / 1000,
+                "hashrate": total_worker_hashrate if total_worker_hashrate > 0 else data.get("hash", 0) / 1000,
                 "balance": data.get("amtDue", 0) / 1000000000000,
                 "paid": data.get("amtPaid", 0) / 1000000000000,
-                "workers": data.get("activeWorkers", 0),
+                "workers": workers_count if workers_count > 0 else data.get("activeWorkers", 0),
                 "last_share": data.get("lastHash", 0),
                 "valid_shares": data.get("validShares", 0),
                 "invalid_shares": data.get("invalidShares", 0),
@@ -31,23 +48,8 @@ def get_supportxmr_stats():
     return {"pool": "SupportXMR", "status": "offline"}
 
 def get_minexmr_stats():
-    try:
-        url = f"https://minexmr.com/api/stats_address?address={WALLET}"
-        response = requests.get(url, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            return {
-                "pool": "MineXMR",
-                "hashrate": data.get("hash", 0) / 1000,
-                "balance": data.get("amtDue", 0) / 1000000000000,
-                "paid": data.get("amtPaid", 0) / 1000000000000,
-                "workers": len(data.get("workers", [])),
-                "valid_shares": data.get("validShares", 0),
-                "status": "online"
-            }
-    except Exception as e:
-        return {"pool": "MineXMR", "status": "error", "error": str(e)}
-    return {"pool": "MineXMR", "status": "offline"}
+    # MineXMR closed in 2022 - skipping this pool
+    return {"pool": "MineXMR", "status": "offline", "error": "Pool closed in 2022"}
 
 def get_nanopool_stats():
     try:
@@ -65,6 +67,9 @@ def get_nanopool_stats():
                     "workers": len(user_data.get("workers", [])),
                     "status": "online"
                 }
+            else:
+                # Account not found on this pool
+                return {"pool": "Nanopool", "status": "offline", "error": "Account not found"}
     except Exception as e:
         return {"pool": "Nanopool", "status": "error", "error": str(e)}
     return {"pool": "Nanopool", "status": "offline"}
@@ -155,7 +160,7 @@ def print_summary(all_stats):
     print(f"│ Total Balance:      {format_xmr(total_balance)} ({format_usd(total_balance)})")
     print(f"│ Total Paid:         {format_xmr(total_paid)} ({format_usd(total_paid)})")
     print(f"│ Total Workers:      {total_workers}")
-    print(f"│ Active Pools:       {active_pools}/3")
+    print(f"│ Active Pools:       {active_pools}/1 (SupportXMR only)")
     print(f"│ Total Earnings:     {format_xmr(total_balance + total_paid)} ({format_usd(total_balance + total_paid)})")
     print("=" * 100)
 
@@ -186,13 +191,25 @@ def main():
             clear_screen()
             
             print_header()
-            
+
+            print("\n🔍 Fetching data from pools...")
             supportxmr = get_supportxmr_stats()
+            print(f"   SupportXMR: {supportxmr.get('status', 'unknown')}")
+            if supportxmr.get('status') == 'error':
+                print(f"   Error: {supportxmr.get('error', 'Unknown')}")
+            elif supportxmr.get('status') == 'online':
+                print(f"   Hashrate: {supportxmr.get('hashrate', 0):.2f} H/s")
+
             time.sleep(1)
             minexmr = get_minexmr_stats()
+            print(f"   MineXMR: {minexmr.get('status', 'unknown')} (Pool closed)")
+
             time.sleep(1)
             nanopool = get_nanopool_stats()
-            
+            print(f"   Nanopool: {nanopool.get('status', 'unknown')}")
+            if nanopool.get('status') == 'offline' and 'error' in nanopool:
+                print(f"   ({nanopool.get('error', '')})")
+
             all_stats = [supportxmr, minexmr, nanopool]
             
             for stats in all_stats:
@@ -213,6 +230,8 @@ def main():
             break
         except Exception as e:
             print(f"\n❌ Error in main loop: {e}")
+            import traceback
+            traceback.print_exc()
             time.sleep(30)
 
 if __name__ == "__main__":
